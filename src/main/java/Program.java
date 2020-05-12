@@ -1,5 +1,3 @@
-package main.java;
-
 /**
  * Note that Java console applications need to be run through the java runtime
  * by running "java -jar JarFile.jar" in the command line.
@@ -26,6 +24,13 @@ public class Program
         System.out.println("Let's get the Statement");
         result = c1.statement();
         System.out.println(result);
+
+        Customer customer = new Customer("Steve");
+        Movie movie = new Movie("movie1", 1);
+        Rental rental = new Rental(movie, 10);
+        customer.addRental(rental);
+        System.out.println(customer.statement());
+
     }
 }
 

@@ -1,5 +1,3 @@
-package main.java;
-
 import java.util.Enumeration;
 import java.util.Vector;
 
@@ -13,21 +11,15 @@ class Customer
         name = newname;
     }
 
-    ;
-
     public void addRental(Rental arg)
     {
         rentals.addElement(arg);
     }
 
-    ;
-
     public String getName()
     {
         return name;
     }
-
-    ;
 
     public String statement()
     {
