@@ -1,10 +1,12 @@
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Vector;
 
 class Customer
 {
     private String name;
-    private Vector rentals = new Vector();
+    private List<Rental> rentals = new ArrayList<>();
 
     public Customer(String newName)
     {
@@ -13,7 +15,7 @@ class Customer
 
     public void addRental(Rental arg)
     {
-        rentals.addElement(arg);
+        rentals.add(arg);
     }
 
     public String getName()
@@ -25,22 +27,19 @@ class Customer
     {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Enumeration enum_rentals = rentals.elements();
         String result = "main.java.Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
-        while (enum_rentals.hasMoreElements())
-        {
-            Rental each = (Rental) enum_rentals.nextElement();
-
-            frequentRenterPoints += calcFrequentRenterPoints(each);
+        for(Rental rental: rentals) {
+            frequentRenterPoints += calcFrequentRenterPoints(rental);
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + each.getAmount() + "\n";
-            totalAmount += each.getAmount();
+            result += "\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + rental.getAmount() + "\n";
+            totalAmount += rental.getAmount();
         }
+                    
         //add footer lines
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+        result += "Amount owed is " + totalAmount + "\n";
+        result += "You earned " + frequentRenterPoints + " frequent renter points";
         return result;
     }
 
