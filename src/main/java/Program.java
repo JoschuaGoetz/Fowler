@@ -16,11 +16,14 @@ public class Program
         System.out.println("Welcome to the main.java.Movie Store");
         Movie m1 = new Movie("movie1", PriceCode.NEW_RELEASE);
         Movie m2 = new Movie("movie2", PriceCode.CHILDREN);
+        Movie m3 = new Movie("movie3", PriceCode.REGULAR);
         Rental r1 = new Rental(m1, 10);
         Rental r2 = new Rental(m2, 5);
+        Rental r3 = new Rental(m3, 3);
         Customer c1 = new Customer("joe");
         c1.addRental(r1);
         c1.addRental(r2);
+        c1.addRental(r3);
         System.out.println("Let's get the Statement");
         result = c1.statement();
         System.out.println(result);
