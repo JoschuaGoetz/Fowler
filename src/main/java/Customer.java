@@ -1,12 +1,10 @@
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Vector;
 
 class Customer
 {
-    private String name;
-    private List<Rental> rentals = new ArrayList<>();
+    private final String name;
+    private final List<Rental> rentals = new ArrayList<>();
     private int frequentRenterPoints;
     private double amount;
 
@@ -41,20 +39,32 @@ class Customer
 
     public String statement()
     {
-        String result = "main.java.Rental Record for " + this.getName() + "\n";
-        result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+        StringBuilder result = new StringBuilder("main.java.Rental Record for " + this.getName() + "\n");
+        result.append("\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n");
 
-        for(Rental rental: rentals) {
-            result += "\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + rental.getAmount() + "\n";
+        for (Rental rental : rentals)
+        {
+            result.append("\t")
+                    .append(rental.getMovie().getTitle())
+                    .append("\t")
+                    .append("\t")
+                    .append(rental.getDaysRented())
+                    .append("\t").append(rental.getAmount())
+                    .append("\n");
         }
 
         //add footer lines
-        result += "Amount owed is " + this.amount + "\n";
-        result += "You earned " + this.frequentRenterPoints + " frequent renter points";
-        return result;
+        result.append("Amount owed is ")
+                .append(this.amount)
+                .append("\n");
+        result.append("You earned ")
+                .append(this.frequentRenterPoints)
+                .append(" frequent renter points");
+        return result.toString();
     }
 
-    private int calcFrequentRenterPoints(Rental rental) {
+    private int calcFrequentRenterPoints(Rental rental)
+    {
         //Always add one point. If a new release was rented for more than 1 day return 2 points
         return ((rental.getMovie().getPriceCode() == PriceCode.NEW_RELEASE) && rental.getDaysRented() > 1) ? 2 : 1;
     }

@@ -1,6 +1,6 @@
 public class Movie
 {
-    private String title;
+    private final String title;
     private PriceCode priceCode;
 
     public Movie(String newTitle, PriceCode newPriceTag)
