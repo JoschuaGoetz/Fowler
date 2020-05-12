@@ -6,9 +6,9 @@ class Customer
     private String name;
     private Vector rentals = new Vector();
 
-    public Customer(String newname)
+    public Customer(String newName)
     {
-        name = newname;
+        name = newName;
     }
 
     public void addRental(Rental arg)
@@ -63,7 +63,7 @@ class Customer
             case Movie.NEW_RELEASE:
                 thisAmount += each.getDaysRented() * 3;
                 break;
-            case Movie.CHILDRENS:
+            case Movie.CHILDREN:
                 thisAmount += 1.5;
                 if (each.getDaysRented() > 3)
                     thisAmount += (each.getDaysRented() - 3) * 1.5;
