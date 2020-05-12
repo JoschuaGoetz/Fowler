@@ -7,15 +7,31 @@ class Customer
 {
     private String name;
     private List<Rental> rentals = new ArrayList<>();
+    private int frequentRenterPoints;
+    private double amount;
 
     public Customer(String newName)
     {
-        name = newName;
+        this.name = newName;
+        this.frequentRenterPoints = 0;
+        this.amount = 0;
     }
 
-    public void addRental(Rental arg)
+    public void addRental(Rental rental)
     {
-        rentals.add(arg);
+        rentals.add(rental);
+        this.addRenterPoints(rental);
+        this.addAmount(rental);
+    }
+
+    private void addAmount(Rental rental)
+    {
+        this.amount += rental.getAmount();
+    }
+
+    private void addRenterPoints(Rental rental)
+    {
+        this.frequentRenterPoints += calcFrequentRenterPoints(rental);
     }
 
     public String getName()
@@ -25,21 +41,16 @@ class Customer
 
     public String statement()
     {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
         String result = "main.java.Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
         for(Rental rental: rentals) {
-            frequentRenterPoints += calcFrequentRenterPoints(rental);
-            //show figures for this rental
             result += "\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t" + rental.getAmount() + "\n";
-            totalAmount += rental.getAmount();
         }
-                    
+
         //add footer lines
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + frequentRenterPoints + " frequent renter points";
+        result += "Amount owed is " + this.amount + "\n";
+        result += "You earned " + this.frequentRenterPoints + " frequent renter points";
         return result;
     }
 
