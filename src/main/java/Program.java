@@ -14,8 +14,8 @@ public class Program
     {
         String result;
         System.out.println("Welcome to the main.java.Movie Store");
-        Movie m1 = new Movie("movie1", 1);
-        Movie m2 = new Movie("movie2", 2);
+        Movie m1 = new Movie("movie1", PriceCode.NEW_RELEASE);
+        Movie m2 = new Movie("movie2", PriceCode.CHILDREN);
         Rental r1 = new Rental(m1, 10);
         Rental r2 = new Rental(m2, 5);
         Customer c1 = new Customer("joe");
@@ -24,13 +24,6 @@ public class Program
         System.out.println("Let's get the Statement");
         result = c1.statement();
         System.out.println(result);
-
-        Customer customer = new Customer("Steve");
-        Movie movie = new Movie("movie1", 1);
-        Rental rental = new Rental(movie, 10);
-        customer.addRental(rental);
-        System.out.println(customer.statement());
-
     }
 }
 
